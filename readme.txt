@@ -1,5 +1,5 @@
 === Facetious ===
-Contributors: codeforthepeople, johnbillion, s1m0nd
+Contributors: codeforthepeople, johnbillion, s1m0nd, simonwheatley
 Tags: search, faceted, faceted search, advanced search
 Requires at least: 3.4
 Tested up to: 3.5
@@ -48,24 +48,25 @@ The main template function for outputting a Facetious search form is `facetious(
 
 '$args' is an array of arguments thus:
 
- * 'submit' - string  - The text for the submit button.
- * 'echo'   - boolean - Whether to echo the form out or not.
- * 'class'  - string  - The class name for the form.
- * 'id'     - string  - The ID attribute for the form.
- * 'fields' - array   - A list of fields to show in the form. See below.
+ * `submit` - string  - The text for the submit button.
+ * `echo`   - boolean - Whether to echo the form out or not.
+ * `class`  - string  - The class name for the form.
+ * `id`     - string  - The ID attribute for the form.
+ * `fields` - array   - A list of fields to show in the form. See below.
 
 Each item in the 'fields' array can be either:
 
  * A string name of a taxonomy
  * An array of details for the field (see below)
- * One of 's' or 'm' for the keyword search input and month dropdown respectively
+ * One of `s`, `m` or `pt` for the keyword search input, month dropdown and post type dropdown respectively
 
 For each field specified as an array you can specify:
-
- * label - string - The descriptive text for this field. Defaults to the name of the taxonomy.
- * class - string - The class name for the field.
- * id    - string - The ID attribute for the field.
- * all   - string - The "All items" text for this field. Defaults to the 'all_items' label of the taxonomy.
+ 
+ * `label`   - string - The descriptive text for this field. Defaults to the name of the taxonomy, or 'All types' for post types..
+ * `class`   - string - The class name for the field.
+ * `id`      - string - The ID attribute for the field.
+ * `all`     - string - The "All items" text for this field. Defaults to the 'all_items' label of the taxonomy.
+ * `options` - array  - For a taxonomy provide an array with the term slug as the key and the term name as the value, e.g. `array( 'term-1' => 'Term 1', 'term-2' => 'Term 2' );`, for post type supply an array of post type names.
 
 Example 1:
 
@@ -131,19 +132,33 @@ Yep.
 
 == Upgrade Notice ==
 
-= 1.1.1 =
-* Avoid double slashes in URLs when using WPML
+= 1.1.3 =
+* Avoid some encoding and slashing issues. Add some basic default styling to fields in the Facetious widget.
 
 == Changelog ==
 
+= 1.1.3
+
+* Avoid some encoding and slashing issues.
+* Add some basic default stlying to fields in the Facetious widget.
+
+= 1.1.2 =
+
+* Introduce an accepted value in the fields to display a post type dropdown
+* Add documentation for use of `options` value in a field for either post type or taxonomy
+
 = 1.1.1 =
+
 * Avoid double slashes in URLs when using WPML
 
 = 1.1 =
+
 * Introduce an 'options' argument for taxonomies in the template function
 
 = 1.0.2 =
+
 * Avoid a WPML redirection bug.
 
 = 1.0.1 =
+
 * Initial release.
